@@ -27,7 +27,16 @@ class Demoversion implements \Magento\Framework\Option\ArrayInterface
             ['value' => 'demo18', 'label' => __('Demo 18')], 
             ['value' => 'demo19', 'label' => __('Demo 19')], 
             ['value' => 'demo20', 'label' => __('Demo 20')],
-            ['value' => 'demo21', 'label' => __('Demo 21')]
+            ['value' => 'demo21', 'label' => __('Demo 21')],
+            ['value' => 'demo22', 'label' => __('Demo 22')],
+            ['value' => 'demo23', 'label' => __('Demo 23')],
+            ['value' => 'demo24', 'label' => __('Demo 24')],
+            ['value' => 'demo25', 'label' => __('Demo 25')],
+            ['value' => 'demo26', 'label' => __('Demo 26')],
+            ['value' => 'demo27', 'label' => __('Demo 27')],
+            ['value' => 'demo28', 'label' => __('Demo 28')],
+            ['value' => 'demo29', 'label' => __('Demo 29')],
+            ['value' => 'demo30', 'label' => __('Demo 30')]
         ];
     }
 
@@ -55,7 +64,16 @@ class Demoversion implements \Magento\Framework\Option\ArrayInterface
             'demo18' => __('Demo 18'), 
             'demo19' => __('Demo 19'), 
             'demo20' => __('Demo 20'),
-            'demo21' => __('Demo 21')
+            'demo21' => __('Demo 21'),
+            'demo22' => __('Demo 22'),
+            'demo23' => __('Demo 23'),
+            'demo24' => __('Demo 24'),
+            'demo25' => __('Demo 25'),
+            'demo26' => __('Demo 26'),
+            'demo27' => __('Demo 27'),
+            'demo28' => __('Demo 28'),
+            'demo29' => __('Demo 29'),
+            'demo30' => __('Demo 30')
         ];
     }
 }

@@ -15,7 +15,7 @@
  *
  * @category    Mageplaza
  * @package     Mageplaza_LayeredNavigation
- * @copyright   Copyright (c) Mageplaza (https://www.mageplaza.com/)
+ * @copyright   Copyright (c) 2017 Mageplaza (http://www.mageplaza.com/)
  * @license     https://www.mageplaza.com/LICENSE.txt
  */
 
@@ -166,11 +166,7 @@ class Collection extends \Magento\Catalog\Model\ResourceModel\Product\Collection
      */
     public function addLayerCategoryFilter($categories)
     {
-        if ($this->getSearchEngine() == 'elasticsearch') {
-            $this->addFieldToFilter('category_ids', ['in' => $categories]);
-        } else {
-            $this->addFieldToFilter('category_ids', implode(',', $categories));
-        }
+        $this->addFieldToFilter('category_ids', implode(',', $categories));
 
         return $this;
     }
@@ -304,27 +300,20 @@ class Collection extends \Magento\Catalog\Model\ResourceModel\Product\Collection
 
         $this->getSearchCriteriaBuilder();
         $this->getFilterBuilder();
-
-        if (isset($condition['in']) && $this->getSearchEngine() == 'elasticsearch') {
+        if (!is_array($condition) || !in_array(key($condition), ['from', 'to'])) {
             $this->filterBuilder->setField($field);
-            $this->filterBuilder->setValue($condition['in']);
+            $this->filterBuilder->setValue($condition);
             $this->searchCriteriaBuilder->addFilter($this->filterBuilder->create());
         } else {
-            if (!is_array($condition) || !in_array(key($condition), ['from', 'to'])) {
-                $this->filterBuilder->setField($field);
-                $this->filterBuilder->setValue($condition);
+            if (!empty($condition['from'])) {
+                $this->filterBuilder->setField("{$field}.from");
+                $this->filterBuilder->setValue($condition['from']);
                 $this->searchCriteriaBuilder->addFilter($this->filterBuilder->create());
-            } else {
-                if (!empty($condition['from'])) {
-                    $this->filterBuilder->setField("{$field}.from");
-                    $this->filterBuilder->setValue($condition['from']);
-                    $this->searchCriteriaBuilder->addFilter($this->filterBuilder->create());
-                }
-                if (!empty($condition['to'])) {
-                    $this->filterBuilder->setField("{$field}.to");
-                    $this->filterBuilder->setValue($condition['to']);
-                    $this->searchCriteriaBuilder->addFilter($this->filterBuilder->create());
-                }
+            }
+            if (!empty($condition['to'])) {
+                $this->filterBuilder->setField("{$field}.to");
+                $this->filterBuilder->setValue($condition['to']);
+                $this->searchCriteriaBuilder->addFilter($this->filterBuilder->create());
             }
         }
 
@@ -367,7 +356,7 @@ class Collection extends \Magento\Catalog\Model\ResourceModel\Product\Collection
         );
         if ($priceRangeCalculation) {
             $this->filterBuilder->setField('price_dynamic_algorithm');
-            $this->filterBuilder->setValue('auto');
+            $this->filterBuilder->setValue($priceRangeCalculation);
             $this->searchCriteriaBuilder->addFilter($this->filterBuilder->create());
         }
 
@@ -381,15 +370,15 @@ class Collection extends \Magento\Catalog\Model\ResourceModel\Product\Collection
         }
 
         $temporaryStorage = $this->temporaryStorageFactory->create();
-        $table            = $temporaryStorage->storeDocuments($this->searchResult->getItems());
+        //$table            = $temporaryStorage->storeDocuments($this->searchResult->getItems());
 
-        $this->getSelect()->joinInner(
+        /*$this->getSelect()->joinInner(
             [
                 'search_result' => $table->getName(),
             ],
             'e.entity_id = search_result.' . TemporaryStorage::FIELD_ENTITY_ID,
             []
-        );
+        );*/
 
         if ($this->order && 'relevance' === $this->order['field']) {
             $this->getSelect()->order('search_result.' . TemporaryStorage::FIELD_SCORE . ' ' . $this->order['dir']);
@@ -406,16 +395,6 @@ class Collection extends \Magento\Catalog\Model\ResourceModel\Product\Collection
         $this->_filters = [];
 
         return parent::_renderFilters();
-    }
-
-    /**
-     * sort product before load
-     */
-    protected function _beforeLoad()
-    {
-        $this->setOrder('entity_id');
-
-        return parent::_beforeLoad();
     }
 
     /**
@@ -498,18 +477,5 @@ class Collection extends \Magento\Catalog\Model\ResourceModel\Product\Collection
         $this->addFieldToFilter('visibility', $visibility);
 
         return parent::setVisibility($visibility);
-    }
-
-    /**
-     * Get Search Engine Config
-     *
-     * @return string
-     */
-    public function getSearchEngine()
-    {
-        return $this->_scopeConfig->getValue(
-            \Magento\Config\Model\Config\Backend\Admin\Custom::XML_PATH_CATALOG_SEARCH_ENGINE,
-            \Magento\Store\Model\ScopeInterface::SCOPE_STORE
-        );
     }
 }

@@ -119,8 +119,8 @@ $dailydealhelper=$this->helper('Smartwave\Dailydeals\Helper\Data');
                             <?php elseif($dealproduct->getSwDiscountType() ==2) : ?>
                           
                                
-                                <div style="float:right; margin-right:12px;"><?php echo "<strong>OFF: ".number_format($dealproduct->getSwDiscountAmount(),2)."%</strong>"; ?></div>
-                                <div style="float:left; margin-left:12px; "><?php echo "<strong>Save: ".$dailydealhelper->getcurrencySymbol()."".number_format($price-$dealproduct->getSwProductPrice(),2)."</strong>"; ?></div>
+                                <div style="float:right; margin-top:-20px;"><?php echo "<strong>OFF: ".number_format($dealproduct->getSwDiscountAmount(),2)."%</strong>"; ?></div>
+                                <div style="float:left; margin-top:-20px; "><?php echo "<strong>Save: ".$dailydealhelper->getcurrencySymbol()."".number_format($price-$dealproduct->getSwProductPrice(),2)."</strong>"; ?></div>
                                 
                            
                             <?php endif; ?>
@@ -128,38 +128,37 @@ $dailydealhelper=$this->helper('Smartwave\Dailydeals\Helper\Data');
                         <input type="text" style="display: none" id="todate_<?php echo $iterator; ?>" value="<?php echo $dealproduct->getSwDateTo(); ?>" >
                         <input type="text" style="display: none" id="fromdate_<?php echo $iterator; ?>" value="<?php echo $dealproduct->getSwDateFrom(); ?>">
                         <input type="text" style="display: none" id="currentdate_<?php echo $iterator; ?>" value="<?php echo $dailydealhelper->getcurrentDate(); ?>" >
-
-                        <div class="sw-dailydeal-wrapper" style="position: relative;margin-top: 30px;">
-
-                        <div id="CDT" class="sw-dailydeal">
-                            <p id="expired_<?php echo $iterator; ?>"></p>
+                        
+                        <div class="sw-dailydeal"> 
+                        <div id="CDT">
+                            <p id="expired_<?php echo $iterator; ?>"></p> 
                             <div class="countdowncontainer_<?php echo $iterator; ?>" style="display:none;">
-                                    <span class="dailydeal-label">
-                                        <?php echo __('Ends In:'); ?>
-                                    </span>
-                                <span class="number-wrapper">
-                                        <div class="line"></div>
-                                        <span class="number day"><p id="countdown_days_<?php echo $iterator; ?>"></p></span>
-                                        <div class="caption"><?php echo __('Day(s), '); ?></div>
-                                    </span>
+							<span class="dailydeal-label">
+									<?php echo __('Ends In:'); ?>
+								</span>
+								<span class="number-wrapper">
+									<div class="line"></div>
+									<span class="number day"><p id="countdown_days_<?php echo $iterator; ?>">00</p></span>
+									<div class="caption"><?php echo __('Day(s), '); ?></div>
+								</span>
 
-                                <span class="number-wrapper">
-                                        <div class="line"></div>
-                                        <span class="number hour"><p id="countdown_hours_<?php echo $iterator; ?>"></p></span>
-                                        <div class="caption">:</div>
-                                    </span>
+								<span class="number-wrapper">
+									<div class="line"></div>
+									<span class="number hour"><p id="countdown_hours_<?php echo $iterator; ?>">00</p></span>
+									<div class="caption">:</div>
+								</span>
 
-                                <span class="number-wrapper">
-                                        <div class="line"></div>
-                                        <span class="number min"><p id="countdown_minutes_<?php echo $iterator; ?>"></p></span>
-                                        <div class="caption">:</div>
-                                    </span>
+								<span class="number-wrapper">
+									<div class="line"></div>
+									<span class="number min"><p id="countdown_minutes_<?php echo $iterator; ?>">00</p></span>
+									<div class="caption">:</div>
+								</span>
 
-                                <span class="number-wrapper">
-                                        <div class="line"></div>
-                                        <span class="number sec"><p id="countdown_seconds_<?php echo $iterator; ?>"></p></span>
-                                        <div class="caption"></div>
-                                    </span>
+								<span class="number-wrapper">
+									<div class="line"></div>
+									<span class="number sec"><p id="countdown_seconds_<?php echo $iterator; ?>">00</p></span>
+									<div class="caption"></div>
+								</span>
                             </div>
                         </div>
                         </div>

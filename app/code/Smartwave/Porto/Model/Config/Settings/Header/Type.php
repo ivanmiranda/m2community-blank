@@ -25,7 +25,14 @@ class Type implements \Magento\Framework\Option\ArrayInterface
             ['value' => '17', 'label' => __('Type 17')],
             ['value' => '18', 'label' => __('Type 18')],
             ['value' => '19', 'label' => __('Type 19')],
-            ['value' => '20', 'label' => __('Type 20')]
+            ['value' => '20', 'label' => __('Type 20')],
+            ['value' => '21', 'label' => __('Type 21')],
+            ['value' => '22', 'label' => __('Type 22')],
+            ['value' => '23', 'label' => __('Type 23')],
+            ['value' => '24', 'label' => __('Type 24')],
+            ['value' => '25', 'label' => __('Type 25')],
+            ['value' => '26', 'label' => __('Type 26')],
+            ['value' => '27', 'label' => __('Type 27')]
         ];
     }
 
@@ -51,7 +58,14 @@ class Type implements \Magento\Framework\Option\ArrayInterface
             '17' => __('Type 17'),
             '18' => __('Type 18'),
             '19' => __('Type 19'),
-            '20' => __('Type 20')
+            '20' => __('Type 20'),
+            '21' => __('Type 21'),
+            '22' => __('Type 22'),
+            '23' => __('Type 23'),
+            '24' => __('Type 24'),
+            '25' => __('Type 25'),
+            '26' => __('Type 26'),
+            '27' => __('Type 27')
         ];
     }
 }

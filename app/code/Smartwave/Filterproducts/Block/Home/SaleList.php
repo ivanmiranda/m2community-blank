@@ -9,16 +9,16 @@ class SaleList extends \Magento\Catalog\Block\Product\ListProduct {
     protected $_collection;
 
     protected $categoryRepository;
-    
+
     protected $_resource;
-    
+
     public function __construct(
-    \Magento\Catalog\Block\Product\Context $context, 
-            \Magento\Framework\Data\Helper\PostHelper $postDataHelper, 
-            \Magento\Catalog\Model\Layer\Resolver $layerResolver, 
+    \Magento\Catalog\Block\Product\Context $context,
+            \Magento\Framework\Data\Helper\PostHelper $postDataHelper,
+            \Magento\Catalog\Model\Layer\Resolver $layerResolver,
             CategoryRepositoryInterface $categoryRepository,
-            \Magento\Framework\Url\Helper\Data $urlHelper, 
-            \Magento\Catalog\Model\ResourceModel\Product\Collection $collection, 
+            \Magento\Framework\Url\Helper\Data $urlHelper,
+            \Magento\Catalog\Model\ResourceModel\Product\Collection $collection,
             \Magento\Framework\App\ResourceConnection $resource,
             array $data = []
     ) {
@@ -32,7 +32,7 @@ class SaleList extends \Magento\Catalog\Block\Product\ListProduct {
     protected function _getProductCollection() {
         return $this->getProducts();
     }
-    
+
     public function getProducts() {
         $count = $this->getProductCount();
         $category_id = $this->getData("category_id");
@@ -66,8 +66,7 @@ class SaleList extends \Magento\Catalog\Block\Product\ListProduct {
                         'gteq' => date('Y-m-d G:i:s', strtotime($now)),
                         'date' => true,
                     ]
-                ])
-                ->addAttributeToFilter('is_saleable', 1, 'left');
+                ]);
         } else {
             $collection->addMinimalPrice()
                 ->addFinalPrice()
@@ -90,13 +89,12 @@ class SaleList extends \Magento\Catalog\Block\Product\ListProduct {
                         'gteq' => date('Y-m-d G:i:s', strtotime($now)),
                         'date' => true,
                     ]
-                ])
-                ->addAttributeToFilter('is_saleable', 1, 'left');
+                ]);
         }
-        
+
         $collection->getSelect()
                 ->limit($count);
-        
+
         return $collection;
     }
 

@@ -25,17 +25,21 @@ class Demo
     protected $_configFactory;
     
     protected $_objectManager;
+
+    protected $_cacheTypeList;
     
     public function __construct(
         ScopeConfigInterface $scopeConfig,
         \Magento\Store\Model\StoreManagerInterface $storeManager,
         \Magento\Framework\ObjectManagerInterface $objectManager,
-        \Magento\Framework\App\Config\ConfigResource\ConfigInterface $configFactory
+        \Magento\Framework\App\Config\ConfigResource\ConfigInterface $configFactory,
+        \Magento\Framework\App\Cache\TypeListInterface $cacheTypeList
     ) {
         $this->_scopeConfig = $scopeConfig;
         $this->_storeManager = $storeManager;
         $this->_configFactory = $configFactory;
         $this->_objectManager= $objectManager;
+        $this->_cacheTypeList = $cacheTypeList;
         $this->_importPath = BP . '/app/code/Smartwave/Porto/etc/import/';
         $this->_parser = new \Magento\Framework\Xml\Parser();
     }
@@ -82,8 +86,9 @@ class Demo
             }
 
             //$gatewayResponse->setData("import_path",$config);
-            $this->_objectManager->get('Smartwave\Porto\Model\Cssconfig\Generator')->generateCss('design','','');
-            $this->_objectManager->get('Smartwave\Porto\Model\Cssconfig\Generator')->generateCss('settings','','');
+            // $this->_objectManager->get('Smartwave\Porto\Model\Cssconfig\Generator')->generateCss('design','','');
+            // $this->_objectManager->get('Smartwave\Porto\Model\Cssconfig\Generator')->generateCss('settings','','');
+            $this->_cacheTypeList->cleanType(\Magento\Framework\App\Cache\Type\Config::TYPE_IDENTIFIER);
 
             $gatewayResponse->setIsValid(true);
             $gatewayResponse->setRequestSuccess(true);

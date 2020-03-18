@@ -75,7 +75,7 @@
             <footer_bottom>1</footer_bottom>
             <footer_store_switcher>0</footer_store_switcher>
             <footer_logo_src></footer_logo_src>
-            <footer_bottom_copyrights><![CDATA[© Porto eCommerce. 2018. All Rights Reserved]]></footer_bottom_copyrights>
+            <footer_bottom_copyrights><![CDATA[© Porto eCommerce. 2020. All Rights Reserved]]></footer_bottom_copyrights>
             <footer_bottom_custom_1></footer_bottom_custom_1>
             <footer_bottom_custom_2>porto_footer_bottom_custom_block_demo8</footer_bottom_custom_2>
         </footer>
@@ -94,10 +94,8 @@
             <side_custom_block>porto_category_side_custom_block</side_custom_block>
         </category>
         <category_grid>
+            <product_type>4</product_type>
             <columns>4</columns>
-            <flex_grid>0</flex_grid>
-            <move_actions>0</move_actions>
-            <move_title>1</move_title>
         </category_grid>
         <product>
             <product_image_size>6</product_image_size>
@@ -333,9 +331,6 @@
 .sidebar .product-items .product-item-info .product-item-photo {
     max-width: 25.19%;
 }
-.sidebar .product-items .product-item-details {
-    margin-left: calc(26% + 15px);
-}
 .sidebar .product-items .product-item-name a {
     font-size: 12px;
     color: #5b5b5f;
@@ -466,37 +461,11 @@
 .products-grid .product-item .product-item-info {
     background-color: #fff;
 }
-.product-padding, .cms-index-index .products-grid {
-    margin: 0 -15px;
-}
-.one-product .products-grid:not(.side-list):not(.products-related) .owl-carousel .product-item .product-item-details {
-    text-align: left;
-    position: relative;
-}
-.one-product .products-grid:not(.side-list):not(.products-related) .owl-carousel .product-item .product-item-details .price-box {
-    position: absolute;
-    bottom: 20px;
-    right: 10px;
-}
-.one-product .old-price, .one-product .special-price {display: block;text-align: right;}
 .one-product .owl-controls {
     border-top: #eeeeee solid 1px;
     border-bottom: #eeeeee solid 1px;
     padding: 14px 0 12px;
-    margin: -10px 15px 0;
-}
-.products-grid:not(.side-list):not(.products-related) .owl-carousel .product-item, .cms-index-index .products-grid .product-item {
-    padding: 12px 15px;
-}
-.one-product .products-grid:not(.side-list):not(.products-related) .product-item:hover .product-item-info {box-shadow: none;}
-.products-grid:not(.side-list) .product-item .product-item-info .product.name a {
-    font-size: 15px;
-}
-.products-grid:not(.side-list):not(.products-related) .product-item .product-item-details {
-    padding: 10px 10px 25px;
-}
-.product-item .product-reviews-summary {
-    margin: 7px 0 7px;
+    margin: 0;
 }
 .owl-top-narrow .owl-theme .owl-controls {
     right: 6px;
@@ -504,20 +473,6 @@
 }
 .product.name a {
     color: #2b2b2d;
-}
-.price-box .price {
-    font-family: 'Oswald';
-    font-size: 18px;
-    letter-spacing: 0.005em;
-    color: #2b2b2d;
-    font-weight: 400;
-}
-.old-price .price, .old.price {
-    font-size: 14px;
-}
-.special-price .price {
-    color: #ff0000;
-    font-weight: 400;
 }
 .product-label.sale-label {
     border-radius: 20px;
@@ -529,40 +484,6 @@
     background-color: #0fc567;
     color: #ffffff;
 }
-.products-grid .product-item-details .product-item-actions .tocart {
-    text-transform: uppercase;
-    font-size: 12.53px;
-    font-family: 'Oswald';
-    font-weight: 400;
-    letter-spacing: 0.025em;
-    color: #6f6e6c;
-    line-height: 34px;
-    height: 36px;
-    background-color: #fff;
-    border-color: #dee5e8;
-}
-.product-item .tocart:before {
-    content: '\e87f';
-    font-size: 17px;
-    vertical-align: middle;
-}
-.product-item-actions .action.towishlist, .product-addto-links .action.towishlist, .action.towishlist,
-.product-addto-links .action.tocompare, .product-item-actions .action.tocompare, .action.tocompare {
-    border-color: #d8d8d6;
-}
-.products-grid .product-item-info .product-item-details .product-item-actions .actions-secondary {
-    width: 36px;
-    height: 36px;
-    line-height: 34px;
-}
-.product-social-links .action.towishlist:before, .product-addto-links .action.towishlist:before, .block-bundle-summary .action.towishlist:before, .product-item .action.towishlist:before, .table-comparison .action.towishlist:before {
-    content: '\e889';
-}
-.products-grid .product-item-info:hover .product-item-details .product-item-actions .tocart {
-    border-color: #db3570;
-    background-color: #db3570;
-}
-
 
 .catalog-product-view .sidebar .custom-block {
     border: none;
@@ -699,7 +620,7 @@
 .product-info-main .qty.field .qty-changer > a .porto-icon-down-dir:before {
     content: '\f883';
 }
-.catalog-product-view:not(.weltpixel-quickview-catalog-product-view) .box-tocart .action.tocart {
+.catalog-product-view:not(.weltpixel-quickview-catalog-product-view):not(.weltpixel_quickview-catalog_product-view) .box-tocart .action.tocart {
     height: 43px;
     font-size: 14px;
     letter-spacing: 0.05em;
@@ -1142,20 +1063,6 @@ padding-bottom: 20px;
     padding: 5px 10px;
     font-size: 11px;
 }
-.products-grid .product-item .product-item-info:hover .weltpixel-quickview.weltpixel_quickview_button_v2, .weltpixel-quickview.weltpixel_quickview_button_v2 {
-    left: 20px;
-    right: auto;
-    top: 20px;
-    font-family: 'Oswald';
-    font-size: 11px;
-    text-transform: uppercase;
-    letter-spacing: 0.5px;
-    padding: 5px 7px;
-    background-color: #2f2727;
-}
-.products-grid .product-item .product-item-info:hover .weltpixel-quickview.weltpixel_quickview_button_v2 .porto-icon-eye {
-    display: none;
-}
 .product-item .rating-summary .rating-result > span:before {
     color: #575f68;
 }
@@ -1179,6 +1086,25 @@ padding-bottom: 20px;
 }
 .catalog-product-view .sidebar .custom-block.custom-block-1 {
     margin-top: -25px;
+}
+.products-grid .product-item-details .product-item-actions .tocart {
+    text-transform: uppercase;
+    font-size: 12.53px;
+    font-family: 'Oswald';
+    font-weight: 400;
+    letter-spacing: 0.025em;
+    color: #6f6e6c;
+    line-height: 30px;
+    background-color: #f4f4f4;
+    border-color: #f4f4f4;
+}
+.product-item .tocart:before {
+    content: '\e87f';
+    font-size: 17px;
+    vertical-align: middle;
+}
+.product-social-links .action.towishlist:before, .product-addto-links .action.towishlist:before, .block-bundle-summary .action.towishlist:before, .product-item .action.towishlist:before, .table-comparison .action.towishlist:before {
+    content: '\e889';
 }]]></custom_style>
             <custom_style_2><![CDATA[]]></custom_style_2>
         </custom_settings>

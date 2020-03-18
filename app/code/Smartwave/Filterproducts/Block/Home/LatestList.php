@@ -9,16 +9,16 @@ class LatestList extends \Magento\Catalog\Block\Product\ListProduct {
     protected $_collection;
 
     protected $categoryRepository;
-    
+
     protected $_resource;
-    
+
     public function __construct(
-    \Magento\Catalog\Block\Product\Context $context, 
-            \Magento\Framework\Data\Helper\PostHelper $postDataHelper, 
-            \Magento\Catalog\Model\Layer\Resolver $layerResolver, 
+    \Magento\Catalog\Block\Product\Context $context,
+            \Magento\Framework\Data\Helper\PostHelper $postDataHelper,
+            \Magento\Catalog\Model\Layer\Resolver $layerResolver,
             CategoryRepositoryInterface $categoryRepository,
-            \Magento\Framework\Url\Helper\Data $urlHelper, 
-            \Magento\Catalog\Model\ResourceModel\Product\Collection $collection, 
+            \Magento\Framework\Url\Helper\Data $urlHelper,
+            \Magento\Catalog\Model\ResourceModel\Product\Collection $collection,
             \Magento\Framework\App\ResourceConnection $resource,
             array $data = []
     ) {
@@ -32,13 +32,13 @@ class LatestList extends \Magento\Catalog\Block\Product\ListProduct {
     protected function _getProductCollection() {
         return $this->getProducts();
     }
-    
+
     public function getProducts() {
-        $count = $this->getProductCount();                       
+        $count = $this->getProductCount();
         $category_id = $this->getData("category_id");
         $collection = clone $this->_collection;
         $collection->clear()->getSelect()->reset(\Magento\Framework\DB\Select::WHERE)->reset(\Magento\Framework\DB\Select::ORDER)->reset(\Magento\Framework\DB\Select::LIMIT_COUNT)->reset(\Magento\Framework\DB\Select::LIMIT_OFFSET)->reset(\Magento\Framework\DB\Select::GROUP);
-        
+
         if(!$category_id) {
             $category_id = $this->_storeManager->getStore()->getRootCategoryId();
         }
@@ -52,8 +52,7 @@ class LatestList extends \Magento\Catalog\Block\Product\ListProduct {
                 ->addAttributeToSelect('small_image')
                 ->addAttributeToSelect('thumbnail')
                 ->addAttributeToSelect($this->_catalogConfig->getProductAttributes())
-                ->addUrlRewrite()
-                ->addAttributeToFilter('is_saleable', 1, 'left')
+                ->addUrlRewrite() 
                 ->addCategoryFilter($category)
                 ->addAttributeToSort('created_at','desc');
         } else {
@@ -66,14 +65,13 @@ class LatestList extends \Magento\Catalog\Block\Product\ListProduct {
                 ->addAttributeToSelect('thumbnail')
                 ->addAttributeToSelect($this->_catalogConfig->getProductAttributes())
                 ->addUrlRewrite()
-                ->addAttributeToFilter('is_saleable', 1, 'left')
                 ->addAttributeToSort('created_at','desc');
         }
-        
+
         $collection->getSelect()
                 ->order('created_at','desc')
                 ->limit($count);
-                
+
         return $collection;
     }
 

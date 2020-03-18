@@ -27,4 +27,7 @@
     <preference for="Magento\Catalog\Controller\Category\View" type="Smartwave\Porto\Controller\Category\View" />
     <preference for="Magento\CatalogSearch\Controller\Result\Index" type="Smartwave\Porto\Controller\CatalogSearch\Result\Index" />
     <preference for="Magento\Catalog\Helper\Product\View" type="Smartwave\Porto\Helper\Product\View" />
+    <type name="Magento\Framework\View\Result\Page">
+        <plugin name="updateBodyClass" type="Smartwave\Porto\Plugin\UpdateBodyClass"/>
+    </type>
 </config>

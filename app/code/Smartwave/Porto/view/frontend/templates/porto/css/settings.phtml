@@ -5,6 +5,9 @@
 <?php
     $s = $this->getConfig("porto_settings",$this->_coreRegistry->registry('cssgen_store'));
     $_helper = $this->helper('Smartwave\Porto\Helper\Cssconfig');
+    
+    if(isset($s['custom_settings']['custom_google_fonts']) && $s['custom_settings']['custom_google_fonts'])
+        echo $s['custom_settings']['custom_google_fonts'];
 ?>
 body.boxed {
 <?php if(isset($s['general']['boxed_bg_color']) && $s['general']['boxed_bg_color']): ?>

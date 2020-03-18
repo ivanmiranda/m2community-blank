@@ -39,7 +39,7 @@ class Index extends \Magento\CatalogSearch\Controller\Result\Index
      * @var Resolver
      */
     private $layerResolver;
-	
+
 	protected $_scopeConfig;
 
     /**
@@ -90,9 +90,9 @@ class Index extends \Magento\CatalogSearch\Controller\Result\Index
 					return;
 				}
 			}
-
+      $resultPage = $this->resultFactory->create(ResultFactory::TYPE_PAGE);
 			$this->_objectManager->get('Magento\CatalogSearch\Helper\Data')->checkNotes();
-			
+
             $full_width = $this->_scopeConfig->getValue('porto_settings/general/layout', \Magento\Store\Model\ScopeInterface::SCOPE_STORE, $this->_storeManager->getStore()->getId());
             $additional_class = '';
             if(isset($full_width) && $full_width == 'full_width')
@@ -100,14 +100,13 @@ class Index extends \Magento\CatalogSearch\Controller\Result\Index
             $resultPage->getConfig()->addBodyClass($additional_class);
 			$panelLayout = $this->_scopeConfig->getValue('porto_settings/category/page_layout', \Magento\Store\Model\ScopeInterface::SCOPE_STORE, $this->_storeManager->getStore()->getId());
 			if($panelLayout!=''){
-				$resultPage = $this->resultFactory->create(ResultFactory::TYPE_PAGE);
 				$resultPage->getConfig()->setPageLayout($panelLayout);
 				return $resultPage;
 			}else{
 				$this->_view->loadLayout();
 				$this->_view->renderLayout();
 			}
-			
+
 		} else {
 			$this->getResponse()->setRedirect($this->_redirect->getRedirectUrl());
 		}

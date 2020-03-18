@@ -70,7 +70,7 @@
             <footer_bottom>1</footer_bottom>
             <footer_store_switcher>0</footer_store_switcher>
             <footer_logo_src></footer_logo_src>
-            <footer_bottom_copyrights><![CDATA[&copy;Copyright 2018 by SW-THEMES. All Rights Reserved.]]></footer_bottom_copyrights>
+            <footer_bottom_copyrights><![CDATA[&copy;Copyright 2020 by PORTO. All Rights Reserved.]]></footer_bottom_copyrights>
             <footer_bottom_custom_1>porto_footer_bottom_custom_block</footer_bottom_custom_1>
             <footer_bottom_custom_2></footer_bottom_custom_2>
         </footer>
@@ -89,9 +89,8 @@
             <side_custom_block>porto_category_side_custom_block</side_custom_block>
         </category>
         <category_grid>
+            <product_type>4</product_type>
             <columns>4</columns>
-            <flex_grid>0</flex_grid>
-            <move_actions>0</move_actions>
         </category_grid>
         <product>
             <product_image_size>6</product_image_size>
@@ -187,6 +186,18 @@
     .product-fullwidth {
         margin: 15px -15px 0 !important;
     }
+}
+.block-category-list {
+    margin-bottom: 15px;
+}
+.products-grid .product-item .product-item-info.type3 .weltpixel-quickview.weltpixel_quickview_button_v2 {
+    border-radius: 0 0 5px 5px;
+    font-family: "Open Sans";
+    letter-spacing: 0;
+}
+.price-box .price {
+    font-family: "Open Sans";
+    font-weight: 600;
 }]]></custom_style>
             <custom_style_2><![CDATA[]]></custom_style_2>
         </custom_settings>

@@ -6,6 +6,7 @@ class Data extends \Magento\Framework\App\Helper\AbstractHelper
     protected $dailydealFactory;
     protected $scopeConfig;
     protected $productFactory;
+    protected $loadedTimer;
     
     public function __construct(
         \Smartwave\Dailydeals\Model\DailydealFactory $dailydealFactory,
@@ -16,6 +17,7 @@ class Data extends \Magento\Framework\App\Helper\AbstractHelper
         $this->dailydealFactory = $dailydealFactory;
         $this->scopeConfig=$scopeConfig;
         $this->productFactory= $productFactory;
+        $this->loadedTimer = 0;
     }
 
     public function chkEnableDailydeals()
@@ -195,5 +197,13 @@ class Data extends \Magento\Framework\App\Helper\AbstractHelper
             $save=$this->getProductPrice($dealproductsku) - $this->getDealProductPrice($dealproductsku);
             return $save;
         }
+    }
+
+    public function isLoadedTimer() {
+        return $this->loadedTimer;
+    }
+
+    public function setLoadedTimer() {
+        $this->loadedTimer = 1;
     }
 }

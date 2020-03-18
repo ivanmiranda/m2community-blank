@@ -15,9 +15,7 @@ class Family implements \Magento\Framework\Option\ArrayInterface
             ['value' => '"Palatino Linotype", "Book Antiqua", Palatino, serif', 'label' => __('"Palatino Linotype", "Book Antiqua", Palatino, serif')], 
             ['value' => 'Tahoma, Geneva, sans-serif', 'label' => __('Tahoma, Geneva, sans-serif')], 
             ['value' => '"Trebuchet MS", Helvetica, sans-serif', 'label' => __('"Trebuchet MS", Helvetica, sans-serif')], 
-            ['value' => 'Verdana, Geneva, sans-serif', 'label' => __('Verdana, Geneva, sans-serif')], 
-            ['value' => '19px', 'label' => __('19px')], 
-            ['value' => '20px', 'label' => __('20px')]
+            ['value' => 'Verdana, Geneva, sans-serif', 'label' => __('Verdana, Geneva, sans-serif')]
         ];
     }
 

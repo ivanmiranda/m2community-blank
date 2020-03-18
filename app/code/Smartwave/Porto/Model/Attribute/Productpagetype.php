@@ -7,7 +7,7 @@ class Productpagetype extends \Magento\Eav\Model\Entity\Attribute\Source\Abstrac
     {
         if (!$this->_options) {
             $this->_options = [
-                ['value' => '', 'label' => __('')], 
+                ['value' => '', 'label' => __('-')], 
                 ['value' => 'default', 'label' => __('Default')], 
                 ['value' => 'carousel', 'label' => __('Extended')], 
                 ['value' => 'fullwidth', 'label' => __('Full Width')], 

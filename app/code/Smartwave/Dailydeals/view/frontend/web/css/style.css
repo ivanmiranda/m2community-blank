@@ -6,7 +6,7 @@
     width: 100%;
     left: 0;
     bottom: 0;
-    z-index: 5;
+    z-index: 4;
 }
 
 .sw-dailydeal {
@@ -19,7 +19,7 @@
     font-family: 'Oswald';
     text-transform: uppercase;
     line-height: 1;
-    padding: 9px 10px 11px;
+    padding: 9px 9px 11px;
     text-align: center;
 }
 

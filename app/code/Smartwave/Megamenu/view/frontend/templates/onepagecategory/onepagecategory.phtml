@@ -44,6 +44,14 @@
     $columns = $this->getData("columns");
     if(!$columns)
         $columns = "{0:{items:2},768:{items:3},992:{items:4},1200:{items:5}}";
+
+    $product_type = $this->getData("product_type");
+    if($product_type == null) {
+        $product_type = $_category_grid_config['product_type'];
+    }
+    if($product_type == null) {
+        $product_type = 1;
+    }
     
     $custom_styles='<style type="text/css">';
 ?>
@@ -101,7 +109,7 @@
                     ->setData('lazy_owl',$lazy_owl)
                     ->setData('product_count',$product_count)
                     ->setData('columns',$columns)
-                    ->setData('move_actions',$move_actions)
+                    ->setData('product_type',$product_type)
                     ->toHtml();
                 
                 $additional_content = $_helper->getBlockContent($cat_model->getData("sw_ocat_additional_content"));

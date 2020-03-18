@@ -7,8 +7,8 @@
 -->
 <config xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="urn:magento:module:Magento_Config:etc/system_file.xsd">
     <system>
-        <tab id="smartwave_porto" translate="label" sortOrder="200">
-            <label>Porto 3.1.6</label>
+        <tab id="smartwave_porto" translate="label" sortOrder="50">
+            <label>Porto 3.2.2</label>
         </tab>
         <section id="porto_settings" translate="label" sortOrder="10" showInDefault="1" showInWebsite="1" showInStore="1">
             <label>Porto - Settings Panel</label>
@@ -56,15 +56,11 @@
                 </field>
                 <field id="show_site_notice" translate="label comment" type="select" sortOrder="50" showInDefault="1" showInWebsite="1" showInStore="1">
                     <label>Show Site Notice</label>
-                    <source_model>Magento\Config\Model\Config\Source\Yesno</source_model>
-                    <comment><![CDATA[Show Notice custom block above of the header.]]></comment>
-                </field>
+                    <source_model>Smartwave\Porto\Model\Config\Settings\General\Notice</source_model>
+                    </field>
                 <field id="custom_notice_block" translate="label comment" type="text" sortOrder="60" showInDefault="1" showInWebsite="1" showInStore="1">
                     <label>Custom Notice Block ID</label>
-                    <depends>
-                        <field id="show_site_notice">1</field>
-                    </depends>
-                </field>
+                    </field>
                 <field id="category_list_on_left" translate="label comment" type="select" sortOrder="70" showInDefault="1" showInWebsite="1" showInStore="1">
                     <label>Show Category List on Left</label>
                     <source_model>Magento\Config\Model\Config\Source\Yesno</source_model>
@@ -129,6 +125,12 @@
                 </field>
                 <field id="static_block_25" translate="label comment" type="text" sortOrder="28" showInDefault="1" showInWebsite="1" showInStore="1">
                     <label>Static Block ID for Type 25</label>
+                    <depends>
+                        <field id="header_type">25</field>
+                    </depends>
+                </field>
+                <field id="secondary_menu_25" translate="label comment" type="text" sortOrder="29" showInDefault="1" showInWebsite="1" showInStore="1">
+                    <label>Secondary Menu for Type 25</label>
                     <depends>
                         <field id="header_type">25</field>
                     </depends>
@@ -518,6 +520,10 @@
             </group>
             <group id="category_grid" translate="label" sortOrder="140" showInDefault="1" showInWebsite="1" showInStore="1">
                 <label>Category View (Grid Mode)</label>
+                <field id="product_type" translate="label comment" type="select" sortOrder="10" showInDefault="1" showInWebsite="1" showInStore="1">
+                    <label>Products Grid Type</label>
+                    <source_model>Smartwave\Porto\Model\Config\Settings\Category\Type</source_model>
+                </field>
                 <field id="columns" translate="label comment" type="select" sortOrder="10" showInDefault="1" showInWebsite="1" showInStore="1">
                     <label>Products Grid Columns</label>
                     <source_model>Smartwave\Porto\Model\Config\Settings\Category\Columns</source_model>
@@ -526,7 +532,7 @@
                     <label>One Column of Products Grid on Phone Devices</label>
                     <source_model>Magento\Config\Model\Config\Source\Yesno</source_model>
                 </field>
-                <field id="flex_grid" translate="label comment" type="select" sortOrder="15" showInDefault="1" showInWebsite="1" showInStore="1">
+                <!-- <field id="flex_grid" translate="label comment" type="select" sortOrder="15" showInDefault="1" showInWebsite="1" showInStore="1">
                     <label>Flex Grid</label>
                     <source_model>Magento\Config\Model\Config\Source\Enabledisable</source_model>
                 </field>
@@ -539,7 +545,7 @@
                     <label>Move Product Title</label>
                     <source_model>Magento\Config\Model\Config\Source\Yesno</source_model>
                     <comment>If yes, title move below rating star.</comment>
-                </field>
+                </field> -->
                 <field id="infinite_scroller" translate="label comment" type="select" sortOrder="40" showInDefault="1" showInWebsite="1" showInStore="1">
                     <label>Enable Infinite Scroller</label>
                     <source_model>Magento\Config\Model\Config\Source\Yesno</source_model>
@@ -764,7 +770,7 @@
                     <frontend_model>Magento\Config\Block\System\Config\Form\Field\Heading</frontend_model>
                 </field>
                 <field id="infoblock" translate="label comment" type="textarea" sortOrder="210" showInDefault="1" showInWebsite="1" showInStore="1">
-                    <label></label>
+                    <label>Info Text</label>
                 </field>
                 <field id="customblock" translate="label comment" type="text" sortOrder="220" showInDefault="1" showInWebsite="1" showInStore="1">
                     <label>Custom Block before Contacts Form</label>
@@ -773,6 +779,13 @@
             </group>
             <group id="custom_settings" translate="label" sortOrder="550" showInDefault="1" showInWebsite="1" showInStore="1">
                 <label>Customization Settings</label>
+                <field id="custom_google_fonts" translate="label comment" type="textarea" sortOrder="90" showInDefault="1" showInWebsite="1" showInStore="1">
+                    <label>Custom Google Fonts</label>
+                    <comment><![CDATA[Type in your custom styles , e.g.:<br/>
+                            <em>@import url("https://fonts.googleapis.com/css?family=Poppins:300,400,500,600,700");
+                            </em>
+                            ]]></comment>
+                </field>
                 <field id="custom_style" translate="label comment" type="textarea" sortOrder="100" showInDefault="1" showInWebsite="1" showInStore="1">
                     <label>Custom Style 1</label>
                     <comment><![CDATA[Type in your custom styles , e.g.:<br/>
@@ -824,257 +837,12 @@
                     <source_model>Magento\Config\Model\Config\Source\Yesno</source_model>
                 </field>
                 <field id="import_demo_heading" translate="label comment" sortOrder="300" showInDefault="1" showInWebsite="1" showInStore="1">
-                    <label>Import New demos</label>
+                    <label>Import demos</label>
                     <frontend_model>Magento\Config\Block\System\Config\Form\Field\Heading</frontend_model>
                 </field>
                 <field id="import_demo1" translate="button_label" sortOrder="301" showInDefault="1" showInWebsite="1" showInStore="1">
-                    <button_label>Demo 1</button_label>
+                    <button_label>Import Demo</button_label>
                     <attribute type="action_url">porto_admin/system_config_demo/import</attribute>
-                    <attribute type="demo_version">demo01</attribute>
-                    <frontend_model>Smartwave\Porto\Block\System\Config\Form\Button\Import\Demo</frontend_model>
-                </field>
-                <field id="import_demo2" translate="button_label" sortOrder="303" showInDefault="1" showInWebsite="1" showInStore="1">
-                    <button_label>Demo 2</button_label>
-                    <attribute type="action_url">porto_admin/system_config_demo/import</attribute>
-                    <attribute type="demo_version">demo02</attribute>
-                    <frontend_model>Smartwave\Porto\Block\System\Config\Form\Button\Import\Demo</frontend_model>
-                </field>
-                <field id="import_demo3" translate="button_label" sortOrder="305" showInDefault="1" showInWebsite="1" showInStore="1">
-                    <button_label>Demo 3</button_label>
-                    <attribute type="action_url">porto_admin/system_config_demo/import</attribute>
-                    <attribute type="demo_version">demo03</attribute>
-                    <frontend_model>Smartwave\Porto\Block\System\Config\Form\Button\Import\Demo</frontend_model>
-                </field>
-                <field id="import_demo4" translate="button_label" sortOrder="307" showInDefault="1" showInWebsite="1" showInStore="1">
-                    <button_label>Demo 4</button_label>
-                    <attribute type="action_url">porto_admin/system_config_demo/import</attribute>
-                    <attribute type="demo_version">demo04</attribute>
-                    <frontend_model>Smartwave\Porto\Block\System\Config\Form\Button\Import\Demo</frontend_model>
-                </field>
-                <field id="import_demo5" translate="button_label" sortOrder="320" showInDefault="1" showInWebsite="1" showInStore="1">
-                    <button_label>Demo 5</button_label>
-                    <attribute type="action_url">porto_admin/system_config_demo/import</attribute>
-                    <attribute type="demo_version">demo05</attribute>
-                    <frontend_model>Smartwave\Porto\Block\System\Config\Form\Button\Import\Demo</frontend_model>
-                </field>
-                <field id="import_demo6" translate="button_label" sortOrder="330" showInDefault="1" showInWebsite="1" showInStore="1">
-                    <button_label>Demo 6</button_label>
-                    <attribute type="action_url">porto_admin/system_config_demo/import</attribute>
-                    <attribute type="demo_version">demo06</attribute>
-                    <frontend_model>Smartwave\Porto\Block\System\Config\Form\Button\Import\Demo</frontend_model>
-                </field>
-                <field id="import_demo7" translate="button_label" sortOrder="340" showInDefault="1" showInWebsite="1" showInStore="1">
-                    <button_label>Demo 7</button_label>
-                    <attribute type="action_url">porto_admin/system_config_demo/import</attribute>
-                    <attribute type="demo_version">demo07</attribute>
-                    <frontend_model>Smartwave\Porto\Block\System\Config\Form\Button\Import\Demo</frontend_model>
-                </field>
-                <field id="import_demo8" translate="button_label" sortOrder="350" showInDefault="1" showInWebsite="1" showInStore="1">
-                    <button_label>Demo 8</button_label>
-                    <attribute type="action_url">porto_admin/system_config_demo/import</attribute>
-                    <attribute type="demo_version">demo08</attribute>
-                    <frontend_model>Smartwave\Porto\Block\System\Config\Form\Button\Import\Demo</frontend_model>
-                </field>
-                <field id="import_demo9" translate="button_label" sortOrder="360" showInDefault="1" showInWebsite="1" showInStore="1">
-                    <button_label>Demo 9</button_label>
-                    <attribute type="action_url">porto_admin/system_config_demo/import</attribute>
-                    <attribute type="demo_version">demo09</attribute>
-                    <frontend_model>Smartwave\Porto\Block\System\Config\Form\Button\Import\Demo</frontend_model>
-                </field>
-                <field id="import_demo10" translate="button_label" sortOrder="370" showInDefault="1" showInWebsite="1" showInStore="1">
-                    <button_label>Demo 10</button_label>
-                    <attribute type="action_url">porto_admin/system_config_demo/import</attribute>
-                    <attribute type="demo_version">demo10</attribute>
-                    <frontend_model>Smartwave\Porto\Block\System\Config\Form\Button\Import\Demo</frontend_model>
-                </field>
-                <field id="import_demo11" translate="button_label" sortOrder="380" showInDefault="1" showInWebsite="1" showInStore="1">
-                    <button_label>Demo 11</button_label>
-                    <attribute type="action_url">porto_admin/system_config_demo/import</attribute>
-                    <attribute type="demo_version">demo11</attribute>
-                    <frontend_model>Smartwave\Porto\Block\System\Config\Form\Button\Import\Demo</frontend_model>
-                </field>
-                <field id="import_demo12" translate="button_label" sortOrder="390" showInDefault="1" showInWebsite="1" showInStore="1">
-                    <button_label>Demo 12</button_label>
-                    <attribute type="action_url">porto_admin/system_config_demo/import</attribute>
-                    <attribute type="demo_version">demo12</attribute>
-                    <frontend_model>Smartwave\Porto\Block\System\Config\Form\Button\Import\Demo</frontend_model>
-                </field>
-                <field id="import_demo13" translate="button_label" sortOrder="400" showInDefault="1" showInWebsite="1" showInStore="1">
-                    <button_label>Demo 13</button_label>
-                    <attribute type="action_url">porto_admin/system_config_demo/import</attribute>
-                    <attribute type="demo_version">demo13</attribute>
-                    <frontend_model>Smartwave\Porto\Block\System\Config\Form\Button\Import\Demo</frontend_model>
-                </field>
-                <field id="import_demo14" translate="button_label" sortOrder="410" showInDefault="1" showInWebsite="1" showInStore="1">
-                    <button_label>Demo 14</button_label>
-                    <attribute type="action_url">porto_admin/system_config_demo/import</attribute>
-                    <attribute type="demo_version">demo14</attribute>
-                    <frontend_model>Smartwave\Porto\Block\System\Config\Form\Button\Import\Demo</frontend_model>
-                </field>
-                <field id="import_demo15" translate="button_label" sortOrder="420" showInDefault="1" showInWebsite="1" showInStore="1">
-                    <button_label>Demo 15</button_label>
-                    <attribute type="action_url">porto_admin/system_config_demo/import</attribute>
-                    <attribute type="demo_version">demo15</attribute>
-                    <frontend_model>Smartwave\Porto\Block\System\Config\Form\Button\Import\Demo</frontend_model>
-                </field>
-                <field id="import_demo16" translate="button_label" sortOrder="430" showInDefault="1" showInWebsite="1" showInStore="1">
-                    <button_label>Demo 16</button_label>
-                    <attribute type="action_url">porto_admin/system_config_demo/import</attribute>
-                    <attribute type="demo_version">demo16</attribute>
-                    <frontend_model>Smartwave\Porto\Block\System\Config\Form\Button\Import\Demo</frontend_model>
-                </field>
-                <field id="import_demo17" translate="button_label" sortOrder="440" showInDefault="1" showInWebsite="1" showInStore="1">
-                    <button_label>Demo 17</button_label>
-                    <attribute type="action_url">porto_admin/system_config_demo/import</attribute>
-                    <attribute type="demo_version">demo17</attribute>
-                    <frontend_model>Smartwave\Porto\Block\System\Config\Form\Button\Import\Demo</frontend_model>
-                </field>
-                <field id="import_demo18" translate="button_label" sortOrder="450" showInDefault="1" showInWebsite="1" showInStore="1">
-                    <button_label>Demo 18</button_label>
-                    <attribute type="action_url">porto_admin/system_config_demo/import</attribute>
-                    <attribute type="demo_version">demo18</attribute>
-                    <frontend_model>Smartwave\Porto\Block\System\Config\Form\Button\Import\Demo</frontend_model>
-                </field>
-                <field id="import_demo19" translate="button_label" sortOrder="460" showInDefault="1" showInWebsite="1" showInStore="1">
-                    <button_label>Demo 19</button_label>
-                    <attribute type="action_url">porto_admin/system_config_demo/import</attribute>
-                    <attribute type="demo_version">demo19</attribute>
-                    <frontend_model>Smartwave\Porto\Block\System\Config\Form\Button\Import\Demo</frontend_model>
-                </field>
-                <field id="import_demo20" translate="button_label" sortOrder="470" showInDefault="1" showInWebsite="1" showInStore="1">
-                    <button_label>Demo 20</button_label>
-                    <attribute type="action_url">porto_admin/system_config_demo/import</attribute>
-                    <attribute type="demo_version">demo20</attribute>
-                    <frontend_model>Smartwave\Porto\Block\System\Config\Form\Button\Import\Demo</frontend_model>
-                </field>
-                <field id="import_demo21" translate="button_label" sortOrder="475" showInDefault="1" showInWebsite="1" showInStore="1">
-                    <button_label>Demo 21</button_label>
-                    <attribute type="action_url">porto_admin/system_config_demo/import</attribute>
-                    <attribute type="demo_version">demo21</attribute>
-                    <frontend_model>Smartwave\Porto\Block\System\Config\Form\Button\Import\Demo</frontend_model>
-                </field>
-                <field id="import_demo2_heading" translate="label comment" sortOrder="480" showInDefault="1" showInWebsite="1" showInStore="1">
-                    <label>Import Classic Demos</label>
-                    <frontend_model>Magento\Config\Block\System\Config\Form\Field\Heading</frontend_model>
-                </field>
-                <field id="import_demo1_old" translate="button_label" sortOrder="490" showInDefault="1" showInWebsite="1" showInStore="1">
-                    <button_label>Demo 1</button_label>
-                    <attribute type="action_url">porto_admin/system_config_demo/import</attribute>
-                    <attribute type="demo_version">demo01_old</attribute>
-                    <frontend_model>Smartwave\Porto\Block\System\Config\Form\Button\Import\Demo</frontend_model>
-                </field>
-                <field id="import_demo2_old" translate="button_label" sortOrder="500" showInDefault="1" showInWebsite="1" showInStore="1">
-                    <button_label>Demo 2</button_label>
-                    <attribute type="action_url">porto_admin/system_config_demo/import</attribute>
-                    <attribute type="demo_version">demo02_old</attribute>
-                    <frontend_model>Smartwave\Porto\Block\System\Config\Form\Button\Import\Demo</frontend_model>
-                </field>
-                <field id="import_demo3_old" translate="button_label" sortOrder="510" showInDefault="1" showInWebsite="1" showInStore="1">
-                    <button_label>Demo 3</button_label>
-                    <attribute type="action_url">porto_admin/system_config_demo/import</attribute>
-                    <attribute type="demo_version">demo03_old</attribute>
-                    <frontend_model>Smartwave\Porto\Block\System\Config\Form\Button\Import\Demo</frontend_model>
-                </field>
-                <field id="import_demo4_old" translate="button_label" sortOrder="520" showInDefault="1" showInWebsite="1" showInStore="1">
-                    <button_label>Demo 4</button_label>
-                    <attribute type="action_url">porto_admin/system_config_demo/import</attribute>
-                    <attribute type="demo_version">demo04_old</attribute>
-                    <frontend_model>Smartwave\Porto\Block\System\Config\Form\Button\Import\Demo</frontend_model>
-                </field>
-                <field id="import_demo5_old" translate="button_label" sortOrder="530" showInDefault="1" showInWebsite="1" showInStore="1">
-                    <button_label>Demo 5</button_label>
-                    <attribute type="action_url">porto_admin/system_config_demo/import</attribute>
-                    <attribute type="demo_version">demo05_old</attribute>
-                    <frontend_model>Smartwave\Porto\Block\System\Config\Form\Button\Import\Demo</frontend_model>
-                </field>
-                <field id="import_demo6_old" translate="button_label" sortOrder="540" showInDefault="1" showInWebsite="1" showInStore="1">
-                    <button_label>Demo 6</button_label>
-                    <attribute type="action_url">porto_admin/system_config_demo/import</attribute>
-                    <attribute type="demo_version">demo06_old</attribute>
-                    <frontend_model>Smartwave\Porto\Block\System\Config\Form\Button\Import\Demo</frontend_model>
-                </field>
-                <field id="import_demo7_old" translate="button_label" sortOrder="550" showInDefault="1" showInWebsite="1" showInStore="1">
-                    <button_label>Demo 7</button_label>
-                    <attribute type="action_url">porto_admin/system_config_demo/import</attribute>
-                    <attribute type="demo_version">demo07_old</attribute>
-                    <frontend_model>Smartwave\Porto\Block\System\Config\Form\Button\Import\Demo</frontend_model>
-                </field>
-                <field id="import_demo8_old" translate="button_label" sortOrder="560" showInDefault="1" showInWebsite="1" showInStore="1">
-                    <button_label>Demo 8</button_label>
-                    <attribute type="action_url">porto_admin/system_config_demo/import</attribute>
-                    <attribute type="demo_version">demo08_old</attribute>
-                    <frontend_model>Smartwave\Porto\Block\System\Config\Form\Button\Import\Demo</frontend_model>
-                </field>
-                <field id="import_demo9_old" translate="button_label" sortOrder="570" showInDefault="1" showInWebsite="1" showInStore="1">
-                    <button_label>Demo 9</button_label>
-                    <attribute type="action_url">porto_admin/system_config_demo/import</attribute>
-                    <attribute type="demo_version">demo09_old</attribute>
-                    <frontend_model>Smartwave\Porto\Block\System\Config\Form\Button\Import\Demo</frontend_model>
-                </field>
-                <field id="import_demo10_old" translate="button_label" sortOrder="580" showInDefault="1" showInWebsite="1" showInStore="1">
-                    <button_label>Demo 10</button_label>
-                    <attribute type="action_url">porto_admin/system_config_demo/import</attribute>
-                    <attribute type="demo_version">demo10_old</attribute>
-                    <frontend_model>Smartwave\Porto\Block\System\Config\Form\Button\Import\Demo</frontend_model>
-                </field>
-                <field id="import_demo11_old" translate="button_label" sortOrder="590" showInDefault="1" showInWebsite="1" showInStore="1">
-                    <button_label>Demo 11</button_label>
-                    <attribute type="action_url">porto_admin/system_config_demo/import</attribute>
-                    <attribute type="demo_version">demo11_old</attribute>
-                    <frontend_model>Smartwave\Porto\Block\System\Config\Form\Button\Import\Demo</frontend_model>
-                </field>
-                <field id="import_demo12_old" translate="button_label" sortOrder="600" showInDefault="1" showInWebsite="1" showInStore="1">
-                    <button_label>Demo 12</button_label>
-                    <attribute type="action_url">porto_admin/system_config_demo/import</attribute>
-                    <attribute type="demo_version">demo12_old</attribute>
-                    <frontend_model>Smartwave\Porto\Block\System\Config\Form\Button\Import\Demo</frontend_model>
-                </field>
-                <field id="import_demo13_old" translate="button_label" sortOrder="610" showInDefault="1" showInWebsite="1" showInStore="1">
-                    <button_label>Demo 13</button_label>
-                    <attribute type="action_url">porto_admin/system_config_demo/import</attribute>
-                    <attribute type="demo_version">demo13_old</attribute>
-                    <frontend_model>Smartwave\Porto\Block\System\Config\Form\Button\Import\Demo</frontend_model>
-                </field>
-                <field id="import_demo14_old" translate="button_label" sortOrder="620" showInDefault="1" showInWebsite="1" showInStore="1">
-                    <button_label>Demo 14</button_label>
-                    <attribute type="action_url">porto_admin/system_config_demo/import</attribute>
-                    <attribute type="demo_version">demo14_old</attribute>
-                    <frontend_model>Smartwave\Porto\Block\System\Config\Form\Button\Import\Demo</frontend_model>
-                </field>
-                <field id="import_demo15_old" translate="button_label" sortOrder="630" showInDefault="1" showInWebsite="1" showInStore="1">
-                    <button_label>Demo 15</button_label>
-                    <attribute type="action_url">porto_admin/system_config_demo/import</attribute>
-                    <attribute type="demo_version">demo15_old</attribute>
-                    <frontend_model>Smartwave\Porto\Block\System\Config\Form\Button\Import\Demo</frontend_model>
-                </field>
-                <field id="import_demo16_old" translate="button_label" sortOrder="640" showInDefault="1" showInWebsite="1" showInStore="1">
-                    <button_label>Demo 16</button_label>
-                    <attribute type="action_url">porto_admin/system_config_demo/import</attribute>
-                    <attribute type="demo_version">demo16_old</attribute>
-                    <frontend_model>Smartwave\Porto\Block\System\Config\Form\Button\Import\Demo</frontend_model>
-                </field>
-                <field id="import_demo17_old" translate="button_label" sortOrder="650" showInDefault="1" showInWebsite="1" showInStore="1">
-                    <button_label>Demo 17</button_label>
-                    <attribute type="action_url">porto_admin/system_config_demo/import</attribute>
-                    <attribute type="demo_version">demo17_old</attribute>
-                    <frontend_model>Smartwave\Porto\Block\System\Config\Form\Button\Import\Demo</frontend_model>
-                </field>
-                <field id="import_demo18_old" translate="button_label" sortOrder="660" showInDefault="1" showInWebsite="1" showInStore="1">
-                    <button_label>Demo 18</button_label>
-                    <attribute type="action_url">porto_admin/system_config_demo/import</attribute>
-                    <attribute type="demo_version">demo18_old</attribute>
-                    <frontend_model>Smartwave\Porto\Block\System\Config\Form\Button\Import\Demo</frontend_model>
-                </field>
-                <field id="import_demo19_old" translate="button_label" sortOrder="670" showInDefault="1" showInWebsite="1" showInStore="1">
-                    <button_label>Demo 19</button_label>
-                    <attribute type="action_url">porto_admin/system_config_demo/import</attribute>
-                    <attribute type="demo_version">demo19_old</attribute>
-                    <frontend_model>Smartwave\Porto\Block\System\Config\Form\Button\Import\Demo</frontend_model>
-                </field>
-                <field id="import_demo20_old" translate="button_label" sortOrder="680" showInDefault="1" showInWebsite="1" showInStore="1">
-                    <button_label>Demo 20</button_label>
-                    <attribute type="action_url">porto_admin/system_config_demo/import</attribute>
-                    <attribute type="demo_version">demo20_old</attribute>
                     <frontend_model>Smartwave\Porto\Block\System\Config\Form\Button\Import\Demo</frontend_model>
                 </field>
             </group>

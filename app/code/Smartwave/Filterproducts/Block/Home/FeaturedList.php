@@ -32,7 +32,7 @@ class FeaturedList extends \Magento\Catalog\Block\Product\ListProduct {
     protected function _getProductCollection() {
         return $this->getProducts();
     }
-    
+
     public function getProducts() {
         $count = $this->getProductCount();
         $category_id = $this->getData("category_id");
@@ -53,7 +53,6 @@ class FeaturedList extends \Magento\Catalog\Block\Product\ListProduct {
                 ->addAttributeToSelect('thumbnail')
                 ->addAttributeToSelect($this->_catalogConfig->getProductAttributes())
                 ->addUrlRewrite()
-                ->addAttributeToFilter('is_saleable', 1, 'left')
                 ->addAttributeToFilter('sw_featured', 1, 'left')
                 ->addCategoryFilter($category);
         } else {
@@ -65,8 +64,7 @@ class FeaturedList extends \Magento\Catalog\Block\Product\ListProduct {
                 ->addAttributeToSelect('small_image')
                 ->addAttributeToSelect('thumbnail')
                 ->addAttributeToSelect($this->_catalogConfig->getProductAttributes())
-                ->addUrlRewrite()
-                ->addAttributeToFilter('is_saleable', 1, 'left')
+                ->addUrlRewrite() 
                 ->addAttributeToFilter('sw_featured', 1, 'left');
         }
 
