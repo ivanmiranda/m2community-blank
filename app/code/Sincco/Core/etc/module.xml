@@ -1,0 +1,16 @@
+<?xml version="1.0"?>
+<!--
+/**
+ * # NOTICE OF LICENSE
+ * This work is licensed under a ***Creative Commons Attribution-NonCommercial-
+ * NoDerivs 3.0 Unported License*** http://creativecommons.org/licenses/by-nc-nd/3.0
+ *
+ * ## Authors
+ *
+ * Iván Miranda @ivanmiranda
+ */
+-->
+<config xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="../../../../../lib/internal/Magento/Framework/Module/etc/module.xsd">
+    <module name="Sincco_Core" setup_version="0.0.1">
+    </module>
+</config>

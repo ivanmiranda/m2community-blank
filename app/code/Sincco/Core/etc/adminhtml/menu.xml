@@ -1,0 +1,8 @@
+<?xml version="1.0"?>
+<config xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="urn:magento:module:Magento_Backend:etc/menu.xsd">
+	<menu>
+		<add id="Sincco_Core::all" title="Sincco Extensions" module="Sincco_Core" sortOrder="10" resource="Sincco_Core::all"/>
+		<add id="Sincco_Core::general" title="General" module="Sincco_Core" sortOrder="10" resource="Sincco_Core::config" parent="Sincco_Core::all"/>
+		<add id="Sincco_Core::config" title="Configuration" module="Sincco_Core" sortOrder="10" resource="Sincco_Core::config" parent="Sincco_Core::general" action="admin/system_config/edit/section/sincco_core"/>
+	</menu>
+</config>

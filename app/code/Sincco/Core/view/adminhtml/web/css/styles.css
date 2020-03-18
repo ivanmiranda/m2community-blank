@@ -1,0 +1,8 @@
+
+#menu-sincco-core-all > a:before {
+	content: url('../images/sincco_logo.png') !important;
+	/*content: '\e900';*/
+	font-size: 2.4rem!important;
+	position: relative!important;
+	top: -0.2rem!important;
+}

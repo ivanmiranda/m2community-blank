@@ -1,0 +1,7 @@
+<?xml version="1.0"?>
+<config xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="urn:magento:module:Magento_Backend:etc/menu.xsd">
+  <menu>
+	<add id="Sincco_Imageclean::imagecontrol" resource="Sincco_Imageclean::imagecontrol" module="Sincco_Core" title="Images Control" sortOrder="30" parent="Sincco_Core::all"/>
+	<add id="Sincco_Imageclean::imagecleandata" resource="Sincco_Imageclean::imagecleandata" module="Sincco_Imageclean" title="Images Cleaner" sortOrder="30" action="imageclean/imageclean/index" parent="Sincco_Imageclean::imagecontrol"/>
+   </menu>
+</config>
